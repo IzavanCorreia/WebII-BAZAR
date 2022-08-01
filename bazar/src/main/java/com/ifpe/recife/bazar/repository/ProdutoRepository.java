@@ -1,11 +1,12 @@
-package com.recife.ifpe.bazar.model.repository;
+package com.ifpe.recife.bazar.repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.ifpe.recife.bazar.model.entites.Produto;
+
+import com.ifpe.recife.bazar.entites.Produto;
 
 public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 
@@ -18,7 +19,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 		String sql = "insert into produto(nome, descricao) values (?,?)";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getDescricao());
@@ -38,7 +39,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 				+ "where codigo = ?";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getDescricao());
@@ -58,7 +59,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 		String sql = "select * from produto where codigo = ?";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setInt(1, k);
 			
@@ -90,7 +91,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 		
 		try {
 			
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setInt(1, k);
 			
@@ -110,7 +111,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 		List<Produto> produtos = new ArrayList<>();
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 				
 			ResultSet rs = pstm.executeQuery();
 					

@@ -1,4 +1,4 @@
-package com.ifpe.recife.bazar.model.dao;
+package com.ifpe.recife.bazar.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

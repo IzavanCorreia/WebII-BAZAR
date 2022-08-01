@@ -1,13 +1,12 @@
-package com.recife.ifpe.bazar.model.repository;
+package com.ifpe.recife.bazar.repository;
 
 import java.sql.SQLException;
 import java.util.List;
 
-
-import com.ifpe.recife.bazar.model.entites.Lote;
-import com.ifpe.recife.bazar.model.entites.OrgaoDonatario;
-import com.ifpe.recife.bazar.model.entites.OrgaoFiscalizador;
-import com.ifpe.recife.bazar.model.entites.Produto;
+import com.ifpe.recife.bazar.entites.Lote;
+import com.ifpe.recife.bazar.entites.OrgaoDonatario;
+import com.ifpe.recife.bazar.entites.OrgaoFiscalizador;
+import com.ifpe.recife.bazar.entites.Produto;
 
 public class Facade {
 private static Facade myself = null;

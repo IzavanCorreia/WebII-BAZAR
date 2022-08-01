@@ -1,4 +1,4 @@
-package com.ifpe.recife.bazar.model.entites;
+package com.ifpe.recife.bazar.entites;
 
 public class Produto {
 

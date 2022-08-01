@@ -1,11 +1,12 @@
-package com.recife.ifpe.bazar.model.repository;
+package com.ifpe.recife.bazar.repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import com.ifpe.recife.bazar.model.entites.OrgaoDonatario;
+
+import com.ifpe.recife.bazar.entites.OrgaoDonatario;
 
 
 public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatario, Integer> {
@@ -18,7 +19,7 @@ public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatari
 		String sql = "insert into orgaodonatario(nome, endereco, telefone, horariofuncionamento, descricao) values (?,?,?,?,?)";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getEndereco());
@@ -41,7 +42,7 @@ public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatari
 				+ "where id = ?";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getEndereco());
@@ -62,7 +63,7 @@ public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatari
 		String sql = "select * from orgaodonatario where id = ?";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setInt(1, k);
 			
@@ -97,7 +98,7 @@ public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatari
 		
 		try {
 			
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setInt(1, k);
 			
@@ -117,7 +118,7 @@ public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatari
 		List<OrgaoDonatario> orgaodonatarios = new ArrayList<>();
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			
 			ResultSet rs = pstm.executeQuery();

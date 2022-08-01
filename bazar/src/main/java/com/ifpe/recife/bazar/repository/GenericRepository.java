@@ -1,4 +1,4 @@
-package com.recife.ifpe.bazar.model.repository;
+package com.ifpe.recife.bazar.repository;
 
 import java.sql.SQLException;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.recife.ifpe.bazar.model.repository;
+package com.ifpe.recife.bazar.repository;
 
 
 import java.sql.PreparedStatement;
@@ -7,8 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
-import com.ifpe.recife.bazar.model.entites.OrgaoFiscalizador;
+import com.ifpe.recife.bazar.entites.OrgaoFiscalizador;
 
 public class OrgaoFiscalizadorRepository implements GenericRepository<OrgaoFiscalizador, Integer> {
 
@@ -20,7 +19,7 @@ public class OrgaoFiscalizadorRepository implements GenericRepository<OrgaoFisca
 		String sql = "insert into orgaofiscalizador(nome, descricao) values (?,?)";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getDescricao());
@@ -40,7 +39,7 @@ public class OrgaoFiscalizadorRepository implements GenericRepository<OrgaoFisca
 				+ "where id = ?";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getDescricao());
@@ -60,7 +59,7 @@ public class OrgaoFiscalizadorRepository implements GenericRepository<OrgaoFisca
 		String sql = "select * from orgaofiscalizador where id = ?";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setInt(1, k);
 			
@@ -94,7 +93,7 @@ public class OrgaoFiscalizadorRepository implements GenericRepository<OrgaoFisca
 		
 		try {
 			
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			pstm.setInt(1, k);
 			
@@ -114,7 +113,7 @@ public class OrgaoFiscalizadorRepository implements GenericRepository<OrgaoFisca
 		List<OrgaoFiscalizador> orgaofiscalizadores = new ArrayList<>();
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
 			
 			ResultSet rs = pstm.executeQuery();

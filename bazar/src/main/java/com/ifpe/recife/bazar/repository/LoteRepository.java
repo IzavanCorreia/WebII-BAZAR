@@ -1,4 +1,4 @@
-package com.recife.ifpe.bazar.model.repository;
+package com.ifpe.recife.bazar.repository;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,11 +7,10 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-
-import com.ifpe.recife.bazar.model.entites.Lote;
-import com.ifpe.recife.bazar.model.entites.OrgaoDonatario;
-import com.ifpe.recife.bazar.model.entites.OrgaoFiscalizador;
-import com.ifpe.recife.bazar.model.entites.Produto;
+import com.ifpe.recife.bazar.entites.Lote;
+import com.ifpe.recife.bazar.entites.OrgaoDonatario;
+import com.ifpe.recife.bazar.entites.OrgaoFiscalizador;
+import com.ifpe.recife.bazar.entites.Produto;
 
 public class LoteRepository implements GenericRepository<Lote, Integer> {
 
@@ -25,7 +24,7 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 		
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 			
 			pstm.setLong(1, c.getData().getTime());
 			pstm.setString(2, c.getObservacao());
@@ -49,7 +48,7 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 				+ "where id = ?";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 			
 			pstm.setLong(1, c.getId());
 			
@@ -67,7 +66,7 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 						+ "on (l.fk_orgaodonatario = o.id and l.fk_produto = p.codigo and l.fk_orgaofiscalizador = f.id) where l.id = ?";
 				
 				try {
-					PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+					PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 					
 					pstm.setInt(1, k);
 					
@@ -123,7 +122,7 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 		String sql = "delete from lote where id = ?";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 			
 			pstm.setInt(1, k);
 			pstm.execute();
@@ -143,7 +142,7 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 				+ "on (l.fk_orgaodonatario = o.id and l.fk_produto = p.codigo and l.fk_orgaofiscalizador = f.id)";
 		
 		try {
-			PreparedStatement pstm = com.ifpe.recife.bazar.model.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
+			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 			
 			ResultSet rs = pstm.executeQuery();
 			
