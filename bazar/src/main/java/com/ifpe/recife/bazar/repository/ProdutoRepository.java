@@ -4,8 +4,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
+import com.ifpe.recife.bazar.entites.Lote;
 import com.ifpe.recife.bazar.entites.Produto;
 
 public class ProdutoRepository implements GenericRepository<Produto, Integer>{
@@ -16,13 +18,15 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 	public void create(Produto c) throws SQLException {
 		// TODO Auto-generated method stub
 
-		String sql = "insert into produto(nome, descricao) values (?,?)";
+		String sql = "insert into produto(codigo, nome, descricao, id_lote) values (?,?,?,?)";
 		
 		try {
 			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 		
-			pstm.setString(1, c.getNome());
-			pstm.setString(2, c.getDescricao());
+			pstm.setInt(1, c.getCodigo());
+			pstm.setString(2, c.getNome());
+			pstm.setString(3, c.getDescricao());
+			pstm.setInt(4, c.getId_lote().getId());
 			
 			pstm.execute();
 		} catch (ClassNotFoundException e) {
@@ -35,7 +39,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 	public void update(Produto c) throws SQLException {
 		// TODO Auto-generated method stub
 		String sql = "update produto set nome = ?, "
-				+ "descricao = ?, "
+				+ "descricao = ?, id_lote = ?,"
 				+ "where codigo = ?";
 		
 		try {
@@ -43,7 +47,8 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 		
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getDescricao());
-			pstm.setInt(3, c.getCodigo());
+			pstm.setInt(3, c.getId_lote().getId());
+			pstm.setInt(4, c.getCodigo());
 			
 			pstm.execute();
 			
@@ -56,7 +61,8 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 	@Override
 	public Produto read(Integer k) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "select * from produto where codigo = ?";
+		String sql = "select * from produto as p join lote as l"
+				+ "on (p.id_lote = l.id) where p.codigo = ?";
 		
 		try {
 			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
@@ -73,6 +79,15 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 				p.setCodigo(k);
 				p.setNome(rs.getString("nome"));
 				p.setDescricao(rs.getString("descricao"));
+				
+				Lote l = new Lote();
+				
+				l.setId(rs.getInt("id_lote"));
+				l.setData(new Date(rs.getLong("dataentrega")));
+				l.setObservacao(rs.getString("observacao"));
+				
+				p.setId_lote(l);
+				
 			}
 			
 			return p;
@@ -106,7 +121,8 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 
 	@Override
 	public List<Produto> readAll() throws SQLException {
-		String sql = "select * from produto";
+		String sql = "select * from produto as p join lote as l"
+				+ "on(p.id_lote = l.id)";
 		
 		List<Produto> produtos = new ArrayList<>();
 		
@@ -122,6 +138,14 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 				p.setCodigo(rs.getInt("codigo"));
 				p.setNome(rs.getString("nome"));
 				p.setDescricao(rs.getString("descricao"));
+				
+				Lote l = new Lote();
+				
+				l.setId(rs.getInt("id"));
+				l.setData(new Date(rs.getLong("dataentrega")));
+				l.setObservacao(rs.getString("observacao"));
+				
+				p.setId_lote(l);
 				
 				produtos.add(p);
 			}	

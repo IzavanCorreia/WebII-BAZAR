@@ -8,7 +8,6 @@ public class Lote {
 	private long dataEntrega;
 	private String observacao;
 	private OrgaoDonatario orgaodonatario;
-	private Produto produto;
 	private OrgaoFiscalizador orgaofiscalizador;
 	
 	public int getId() {
@@ -29,12 +28,7 @@ public class Lote {
 	public void setOrgaodonatario(OrgaoDonatario orgaodonatario) {
 		this.orgaodonatario = orgaodonatario;
 	}
-	public Produto getProduto() {
-		return produto;
-	}
-	public void setProduto(Produto produto) {
-		this.produto = produto;
-	}
+
 	public OrgaoFiscalizador getOrgaofiscalizador() {
 		return orgaofiscalizador;
 	}

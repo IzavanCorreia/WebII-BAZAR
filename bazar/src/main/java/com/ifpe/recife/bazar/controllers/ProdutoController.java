@@ -46,6 +46,7 @@ public class ProdutoController {
 			Facade.getCurrentInstance().update(produto);
 			
 			return new ResponseEntity<>(HttpStatus.OK);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
@@ -78,8 +79,8 @@ public class ProdutoController {
 		
 		try {
 			Facade.getCurrentInstance().deleteProduto(codigo);
-			
 			return new ResponseEntity<>(HttpStatus.OK);
+			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

@@ -10,7 +10,6 @@ import java.util.List;
 import com.ifpe.recife.bazar.entites.Lote;
 import com.ifpe.recife.bazar.entites.OrgaoDonatario;
 import com.ifpe.recife.bazar.entites.OrgaoFiscalizador;
-import com.ifpe.recife.bazar.entites.Produto;
 
 public class LoteRepository implements GenericRepository<Lote, Integer> {
 
@@ -20,16 +19,16 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 	public void create(Lote c) throws SQLException {
 		// TODO Auto-generated method stub
 		
-		String sql = "insert into lote(dataentrega, observacao, fk_orgaodonatario, fk_produto, fk_orgaofiscalizador) values (?,?,?,?,?)";
+		String sql = "insert into lote(id, dataentrega, observacao, fk_orgaodonatario, fk_orgaofiscalizador) values (?,?,?,?,?)";
 		
 		
 		try {
 			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 			
-			pstm.setLong(1, c.getData().getTime());
-			pstm.setString(2, c.getObservacao());
-			pstm.setInt(3, c.getOrgaodonatario().getId());
-			pstm.setInt(4, c.getProduto().getCodigo());
+			pstm.setInt(1, c.getId());
+			pstm.setLong(2, c.getData().getTime());
+			pstm.setString(3, c.getObservacao());
+			pstm.setInt(4, c.getOrgaodonatario().getId());
 			pstm.setInt(5, c.getOrgaofiscalizador().getId());
 			
 			pstm.execute();
@@ -44,15 +43,20 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 	@Override
 	public void update(Lote c) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "update lote set (dataentrega = ?, observacao = ?, fk_orgaodonatario = ?, fk_produto = ?, fk_orgaofiscalizador = ?) "
+		String sql = "update lote set (dataentrega = ?, observacao = ?, fk_orgaodonatario = ?, fk_orgaofiscalizador = ?)"
 				+ "where id = ?";
 		
 		try {
 			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 			
-			pstm.setLong(1, c.getId());
+			pstm.setLong(1, c.getData().getTime());
+			pstm.setString(2, c.getObservacao());
+			pstm.setInt(3, c.getOrgaodonatario().getId());
+			pstm.setInt(4, c.getOrgaofiscalizador().getId());
+			pstm.setInt(5, c.getId());
 			
 			pstm.execute();
+			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -62,8 +66,8 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 	@Override
 	public Lote read(Integer k) throws SQLException {
 		// TODO Auto-generated method stub
-				String sql = "select * lote as l join orgaodonatario as o join produto as p join orgaofiscalizador as f"
-						+ "on (l.fk_orgaodonatario = o.id and l.fk_produto = p.codigo and l.fk_orgaofiscalizador = f.id) where l.id = ?";
+				String sql = "select * from lote as l join orgaodonatario as o join orgaofiscalizador as f"
+						+ "on (l.fk_orgaodonatario = o.id and l.fk_orgaofiscalizador = f.id) where l.id = ?";
 				
 				try {
 					PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
@@ -87,20 +91,13 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 						o.setTelefone(rs.getString("telefone"));
 						o.setNome(rs.getString("horariofuncionamento"));
 						o.setDescricao(rs.getString("descricao"));
-						
-						
-						Produto p = new Produto();
-						p.setCodigo(rs.getInt("codigo"));
-						p.setNome(rs.getString("nome"));
-						p.setDescricao(rs.getString("descricao"));
-						
+		
 						OrgaoFiscalizador f = new OrgaoFiscalizador();
 						f.setId(rs.getInt("id"));
 						f.setNome(rs.getString("nome"));
 						f.setDescricao(rs.getString("descricao"));
-						
+					
 						l.setOrgaodonatario(o);
-						l.setProduto(p);
 						l.setOrgaofiscalizador(f);
 						
 					}
@@ -138,8 +135,8 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 
 		List<Lote> lotes = new ArrayList<>();
 		
-		String sql = "select * lote as l join orgaodonatario as o join produto as p join orgaofiscalizador as f"
-				+ "on (l.fk_orgaodonatario = o.id and l.fk_produto = p.codigo and l.fk_orgaofiscalizador = f.id)";
+		String sql = "select * from lote as l join orgaodonatario as o join orgaofiscalizador as f"
+				+ "on (l.fk_orgaodonatario = o.id and l.fk_orgaofiscalizador = f.id)";
 		
 		try {
 			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
@@ -162,10 +159,6 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 				o.setNome(rs.getString("horariofuncionamento"));
 				o.setDescricao(rs.getString("descricao"));
 				
-				Produto p = new Produto();
-				p.setCodigo(rs.getInt("codigo"));
-				p.setNome(rs.getString("nome"));
-				p.setDescricao(rs.getString("descricao"));
 				
 				OrgaoFiscalizador f = new OrgaoFiscalizador();
 				f.setId(rs.getInt("id"));
@@ -173,7 +166,6 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 				f.setDescricao(rs.getString("descricao"));
 				
 				l.setOrgaodonatario(o);
-				l.setProduto(p);
 				l.setOrgaofiscalizador(f);
 				
 				lotes.add(l);

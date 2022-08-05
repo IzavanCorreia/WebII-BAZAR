@@ -49,6 +49,7 @@ public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatari
 			pstm.setString(3, c.getTelefone());
 			pstm.setString(4, c.getHorarioFuncionamento());
 			pstm.setString(5, c.getDescricao());
+			pstm.setInt(6, c.getId());
 			
 			pstm.execute();
 			
