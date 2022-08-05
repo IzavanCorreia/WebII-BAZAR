@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.ifpe.recife.bazar.entites.Lote;
@@ -83,7 +82,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 				Lote l = new Lote();
 				
 				l.setId(rs.getInt("id_lote"));
-				l.setData(new Date(rs.getLong("dataentrega")));
+				l.setDataentrega(rs.getLong("dataentrega"));
 				l.setObservacao(rs.getString("observacao"));
 				
 				p.setId_lote(l);
@@ -142,7 +141,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 				Lote l = new Lote();
 				
 				l.setId(rs.getInt("id"));
-				l.setData(new Date(rs.getLong("dataentrega")));
+				l.setDataentrega(rs.getLong("dataentrega"));
 				l.setObservacao(rs.getString("observacao"));
 				
 				p.setId_lote(l);

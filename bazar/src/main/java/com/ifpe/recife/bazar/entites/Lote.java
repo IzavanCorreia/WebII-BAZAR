@@ -1,11 +1,9 @@
 package com.ifpe.recife.bazar.entites;
 
-import java.util.Date;
-
 public class Lote {
 	
 	private int id;
-	private long dataEntrega;
+	private long dataentrega;
 	private String observacao;
 	private OrgaoDonatario orgaodonatario;
 	private OrgaoFiscalizador orgaofiscalizador;
@@ -22,26 +20,26 @@ public class Lote {
 	public void setObservacao(String observacao) {
 		this.observacao = observacao;
 	}
-	public OrgaoDonatario getOrgaodonatario() {
+	public OrgaoDonatario getOrgaoDonatario() {
 		return orgaodonatario;
 	}
-	public void setOrgaodonatario(OrgaoDonatario orgaodonatario) {
+	public void setOrgaoDonatario(OrgaoDonatario orgaodonatario) {
 		this.orgaodonatario = orgaodonatario;
 	}
 
-	public OrgaoFiscalizador getOrgaofiscalizador() {
+	public OrgaoFiscalizador getOrgaoFiscalizador() {
 		return orgaofiscalizador;
 	}
-	public void setOrgaofiscalizador(OrgaoFiscalizador orgaofiscalizador) {
+	public void setOrgaoFiscalizador(OrgaoFiscalizador orgaofiscalizador) {
 		this.orgaofiscalizador = orgaofiscalizador;
 	}
 	
-	  public Date getData() {
-	        return new Date(this.dataEntrega);
-	    }
-
-	    public void setData(Date data) {
-	        this.dataEntrega = data.getTime();
-	    }
+		public long getDataentrega() {
+			return dataentrega;
+		}
+		public void setDataentrega(long dataentrega) {
+			this.dataentrega = dataentrega;
+		
 	
+}
 }

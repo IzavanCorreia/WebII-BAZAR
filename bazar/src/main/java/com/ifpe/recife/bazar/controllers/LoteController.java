@@ -14,25 +14,22 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.sql.SQLException;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import com.ifpe.recife.bazar.entites.Lote;
 import com.ifpe.recife.bazar.repository.Facade;
 
-@RestController
 @RequestMapping("lote")
+@RestController
 public class LoteController {
 
 	@CrossOrigin("*")
 	@PostMapping
 	public void create(@RequestBody Lote lote) {
 		
-        Calendar calendar = Calendar.getInstance();
-        Date dateObj = calendar.getTime();
-		lote.setData(dateObj);
+		lote.setDataentrega(System.currentTimeMillis());
 		
+	
 		try {
 			Facade.getCurrentInstance().create(lote);
 		} catch (SQLException e) {

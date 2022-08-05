@@ -24,7 +24,7 @@ public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatari
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getEndereco());
 			pstm.setString(3, c.getTelefone());
-			pstm.setString(4, c.getHorarioFuncionamento());
+			pstm.setString(4, c.getHorariofuncionamento());
 			pstm.setString(5, c.getDescricao());	
 			
 			pstm.execute();
@@ -47,7 +47,7 @@ public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatari
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getEndereco());
 			pstm.setString(3, c.getTelefone());
-			pstm.setString(4, c.getHorarioFuncionamento());
+			pstm.setString(4, c.getHorariofuncionamento());
 			pstm.setString(5, c.getDescricao());
 			pstm.setInt(6, c.getId());
 			
@@ -134,7 +134,7 @@ public class OrgaoDonatarioRepository implements GenericRepository<OrgaoDonatari
 				o.setNome(rs.getString("nome"));
 				o.setEndereco(rs.getString("endereco"));
 				o.setTelefone(rs.getString("telefone"));
-				o.setHorarioFuncionamento(rs.getString("horariofuncionamento"));
+				o.setHorariofuncionamento(rs.getString("horariofuncionamento"));
 				o.setDescricao(rs.getString("descricao"));
 				
 				orgaodonatarios.add(o);

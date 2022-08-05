@@ -6,7 +6,7 @@ public class OrgaoDonatario {
 	private String nome;
 	private String endereco;
 	private String telefone;
-	private String horarioFuncionamento;
+	private String horariofuncionamento;
 	private String descricao;
 	
 	public int getId() {
@@ -33,11 +33,11 @@ public class OrgaoDonatario {
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-	public String getHorarioFuncionamento() {
-		return horarioFuncionamento;
+	public String getHorariofuncionamento() {
+		return horariofuncionamento;
 	}
-	public void setHorarioFuncionamento(String horarioFuncionamento) {
-		this.horarioFuncionamento = horarioFuncionamento;
+	public void setHorariofuncionamento(String horariofuncionamento) {
+		this.horariofuncionamento = horariofuncionamento;
 	}
 	public String getDescricao() {
 		return descricao;

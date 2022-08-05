@@ -4,7 +4,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import com.ifpe.recife.bazar.entites.Lote;
@@ -26,10 +25,10 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 			
 			pstm.setInt(1, c.getId());
-			pstm.setLong(2, c.getData().getTime());
+			pstm.setLong(2, c.getDataentrega());
 			pstm.setString(3, c.getObservacao());
-			pstm.setInt(4, c.getOrgaodonatario().getId());
-			pstm.setInt(5, c.getOrgaofiscalizador().getId());
+			pstm.setInt(4, c.getOrgaoDonatario().getId());
+			pstm.setInt(5, c.getOrgaoFiscalizador().getId());
 			
 			pstm.execute();
 		} catch (ClassNotFoundException e) {
@@ -43,16 +42,16 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 	@Override
 	public void update(Lote c) throws SQLException {
 		// TODO Auto-generated method stub
-		String sql = "update lote set (dataentrega = ?, observacao = ?, fk_orgaodonatario = ?, fk_orgaofiscalizador = ?)"
+		String sql = "update lote set dataentrega = ?, observacao = ?, fk_orgaodonatario = ?, fk_orgaofiscalizador = ?"
 				+ "where id = ?";
 		
 		try {
 			PreparedStatement pstm = com.ifpe.recife.bazar.dao.ConnectionManager.getCurrentConnection().prepareStatement(sql);
 			
-			pstm.setLong(1, c.getData().getTime());
+			pstm.setLong(1, c.getDataentrega());
 			pstm.setString(2, c.getObservacao());
-			pstm.setInt(3, c.getOrgaodonatario().getId());
-			pstm.setInt(4, c.getOrgaofiscalizador().getId());
+			pstm.setInt(3, c.getOrgaoDonatario().getId());
+			pstm.setInt(4, c.getOrgaoFiscalizador().getId());
 			pstm.setInt(5, c.getId());
 			
 			pstm.execute();
@@ -81,7 +80,7 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 					if(rs.next()) {
 						
 						l.setId(rs.getInt("id"));
-						l.setData(new Date(rs.getLong("dataentrega")));
+						l.setDataentrega(rs.getLong("dataentrega"));
 						l.setObservacao(rs.getString("observacao"));
 						
 						OrgaoDonatario o = new OrgaoDonatario();
@@ -97,8 +96,8 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 						f.setNome(rs.getString("nome"));
 						f.setDescricao(rs.getString("descricao"));
 					
-						l.setOrgaodonatario(o);
-						l.setOrgaofiscalizador(f);
+						l.setOrgaoDonatario(o);
+						l.setOrgaoFiscalizador(f);
 						
 					}
 					
@@ -148,7 +147,7 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 			while(rs.next()) {
 				
 				l.setId(rs.getInt("id"));
-				l.setData(new Date(rs.getLong("dataentrega")));
+				l.setDataentrega(rs.getLong("dataentrega"));
 				l.setObservacao(rs.getString("observacao"));
 				
 				OrgaoDonatario o = new OrgaoDonatario();
@@ -165,8 +164,8 @@ public class LoteRepository implements GenericRepository<Lote, Integer> {
 				f.setNome(rs.getString("nome"));
 				f.setDescricao(rs.getString("descricao"));
 				
-				l.setOrgaodonatario(o);
-				l.setOrgaofiscalizador(f);
+				l.setOrgaoDonatario(o);
+				l.setOrgaoFiscalizador(f);
 				
 				lotes.add(l);
 			}
