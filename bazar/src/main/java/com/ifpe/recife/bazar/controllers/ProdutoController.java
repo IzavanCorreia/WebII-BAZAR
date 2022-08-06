@@ -43,16 +43,16 @@ public class ProdutoController {
 	
 	@CrossOrigin("*")
 	@PutMapping("/produto")
-	public ResponseEntity<?> update(@RequestBody Produto produto){
+	public String update(@RequestBody Produto produto){
 		
 		try {
 			Facade.getCurrentInstance().update(produto);
 			
-			return new ResponseEntity<>(HttpStatus.OK);
+			return "Produto atualizado com sucesso!";
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return "Não foi possível atualizar o produto!";
 		}
 		
 	}

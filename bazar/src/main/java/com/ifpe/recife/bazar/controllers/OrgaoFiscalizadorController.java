@@ -41,15 +41,15 @@ public class OrgaoFiscalizadorController {
 	
 	@CrossOrigin("*")
 	@PutMapping("/fiscalizador")
-	public ResponseEntity<?> update(@RequestBody OrgaoFiscalizador fiscalizador){
+	public String update(@RequestBody OrgaoFiscalizador fiscalizador){
 		
 		try {
 			Facade.getCurrentInstance().update(fiscalizador);
 			
-			return new ResponseEntity<>(HttpStatus.OK);
+			return "Orgão fiscalizador atualizado com sucesso!";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return "Não foi possível atualizar o orgão fiscalizador!";
 		}
 		
 	}

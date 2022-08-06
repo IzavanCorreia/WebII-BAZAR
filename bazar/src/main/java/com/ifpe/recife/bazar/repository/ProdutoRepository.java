@@ -38,7 +38,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 	public void update(Produto c) throws SQLException {
 		// TODO Auto-generated method stub
 		String sql = "update produto set nome = ?, "
-				+ "descricao = ?, id_lote = ?,"
+				+ "descricao = ?"
 				+ "where codigo = ?";
 		
 		try {
@@ -46,8 +46,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 		
 			pstm.setString(1, c.getNome());
 			pstm.setString(2, c.getDescricao());
-			pstm.setInt(3, c.getId_lote().getId());
-			pstm.setInt(4, c.getCodigo());
+			pstm.setInt(3, c.getCodigo());
 			
 			pstm.execute();
 			

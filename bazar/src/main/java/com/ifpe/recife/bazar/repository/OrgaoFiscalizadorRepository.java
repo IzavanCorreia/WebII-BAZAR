@@ -35,7 +35,7 @@ public class OrgaoFiscalizadorRepository implements GenericRepository<OrgaoFisca
 	@Override
 	public void update(OrgaoFiscalizador c) throws SQLException {
 		String sql = "update orgaofiscalizador set nome = ?, "
-				+ "descricao = ?, "
+				+ "descricao = ?"
 				+ "where id = ?";
 		
 		try {

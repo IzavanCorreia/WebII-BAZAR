@@ -39,15 +39,15 @@ public class OrgaoDonatarioController {
 	
 	@CrossOrigin("*")
 	@PutMapping("/donatario")
-	public ResponseEntity<?> update(@RequestBody OrgaoDonatario donatario){
+	public String update(@RequestBody OrgaoDonatario donatario){
 		
 		try {
 			Facade.getCurrentInstance().update(donatario);
 			
-			return new ResponseEntity<>(HttpStatus.OK);
+			return "Orgão donatário atualizado com sucesso!";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return "Não foi possível atualizar o orgão donatário";
 		}
 		
 	}

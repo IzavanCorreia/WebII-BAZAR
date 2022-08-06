@@ -41,15 +41,15 @@ public class LoteController {
 	
 	@CrossOrigin("*")
 	@PutMapping("/lote")
-	public ResponseEntity<?> update(@RequestBody Lote lote){
+	public String update(@RequestBody Lote lote){
 		
 		try {
 			Facade.getCurrentInstance().update(lote);
 			
-			return new ResponseEntity<>(HttpStatus.OK);
+			return "Lote atualizado com sucesso!";
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
-			return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+			return "Não foi possível atualizar o lote!";
 		}
 		
 	}
