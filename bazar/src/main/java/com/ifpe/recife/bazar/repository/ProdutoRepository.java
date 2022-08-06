@@ -25,7 +25,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 			pstm.setInt(1, c.getCodigo());
 			pstm.setString(2, c.getNome());
 			pstm.setString(3, c.getDescricao());
-			pstm.setInt(4, c.getId_lote().getId());
+			pstm.setInt(4, c.getIdLote());
 			
 			pstm.execute();
 		} catch (ClassNotFoundException e) {
@@ -80,7 +80,7 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 				
 				Lote l = new Lote();
 				
-				l.setId(rs.getInt("id_lote"));
+				l.setId(rs.getInt("idLote"));
 				l.setDataentrega(rs.getLong("dataentrega"));
 				l.setObservacao(rs.getString("observacao"));
 				
@@ -119,8 +119,8 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 
 	@Override
 	public List<Produto> readAll() throws SQLException {
-		String sql = "select * from produto as p join lote as l"
-				+ "on(p.id_lote = l.id)";
+		String sql = "select produto.codigo, produto.id_lote,  lote.fk_orgaofiscalizador, lote.fk_orgaodonatario, produto.nome, produto.descricao, lote.dataentrega, lote.observacao \\r\\n\"\r\n"
+				+ "    			+ \"from produto as produto join lote as lore on (produto.id_lote = lote.id)";
 		
 		List<Produto> produtos = new ArrayList<>();
 		
@@ -139,9 +139,11 @@ public class ProdutoRepository implements GenericRepository<Produto, Integer>{
 				
 				Lote l = new Lote();
 				
-				l.setId(rs.getInt("id"));
+				l.setId(rs.getInt("id_lote"));
 				l.setDataentrega(rs.getLong("dataentrega"));
 				l.setObservacao(rs.getString("observacao"));
+				l.setIdOrgaoDonatario(rs.getInt("fk_orgaodonatario"));
+                l.setIdOrgaoFiscalizador(rs.getInt("fk_orgaofiscalizador"));
 				
 				p.setId_lote(l);
 				

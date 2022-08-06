@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -19,12 +18,12 @@ import java.util.List;
 import com.ifpe.recife.bazar.entites.Lote;
 import com.ifpe.recife.bazar.repository.Facade;
 
-@RequestMapping("lote")
+@CrossOrigin("*")
 @RestController
 public class LoteController {
 
 	@CrossOrigin("*")
-	@PostMapping
+	@PostMapping("/lote")
 	public void create(@RequestBody Lote lote) {
 		
 		lote.setDataentrega(System.currentTimeMillis());
@@ -89,17 +88,8 @@ public class LoteController {
 	
 	@CrossOrigin("*")
 	@GetMapping("/lote")
-	public ResponseEntity<List<Lote>> readAll(){
-		
-		try {
-			return new ResponseEntity<List<Lote>>(
-					Facade.getCurrentInstance().readAllLote(),
-					HttpStatus.OK);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			throw new ResponseStatusException(HttpStatus.INTERNAL_SERVER_ERROR);
-		}
-		
+	public List<Lote> readAll() throws SQLException{
+		return Facade.getCurrentInstance().readAllLote();
 	}
 	
 }

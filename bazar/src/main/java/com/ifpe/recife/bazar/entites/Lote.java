@@ -7,6 +7,8 @@ public class Lote {
 	private String observacao;
 	private OrgaoDonatario orgaodonatario;
 	private OrgaoFiscalizador orgaofiscalizador;
+	private int id_OrgaoDonatario;
+	private int id_OrgaoFiscalizador;
 	
 	public int getId() {
 		return id;
@@ -42,4 +44,16 @@ public class Lote {
 		
 	
 }
+		public int getIdOrgaoDonatario() {
+			return id_OrgaoDonatario;
+		}
+		public void setIdOrgaoDonatario(int idOrgaoDonatario) {
+			this.id_OrgaoDonatario = idOrgaoDonatario;
+		}
+		public int getIdOrgaoFiscalizador() {
+			return id_OrgaoFiscalizador;
+		}
+		public void setIdOrgaoFiscalizador(int idOrgaoFiscalizador) {
+			this.id_OrgaoFiscalizador = idOrgaoFiscalizador;
+		}
 }
